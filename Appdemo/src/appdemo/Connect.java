@@ -70,7 +70,7 @@ public class Connect {
     public ResultSet search(String txtSearch, String tbName){
         try {
             stmt = conn.createStatement();
-            String sql = "select * from " + tbName +" where tencd like '%"+ txtSearch + "%'";
+            String sql = " select * from " + tbName +" where tencd like '%"+ txtSearch + "%'";
             rs = stmt.executeQuery(sql);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "khong lay dc du lieu");
