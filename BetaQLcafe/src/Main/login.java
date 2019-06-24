@@ -17,7 +17,7 @@ import javax.swing.JRootPane;
  */
 public class login extends javax.swing.JFrame {
     public static void check(){
-        connect conn = new connect("root", "", "qlcafe");
+        connect conn = new connect("root", "", "ql_cafe");
         conn.getConnect();
         try {
             ResultSet rs = conn.getData("taikhoan");

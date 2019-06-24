@@ -46,11 +46,14 @@ public class fmMain extends javax.swing.JFrame {
         jpTime = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         JLname = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        JpHome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JpHome.setLayout(new java.awt.BorderLayout());
 
+        btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/trang_chu.png"))); // NOI18N
         btnTrangChu.setText("Trang chủ");
         btnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +61,7 @@ public class fmMain extends javax.swing.JFrame {
             }
         });
 
+        btnBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ban_hang.png"))); // NOI18N
         btnBanHang.setText("Bán hàng");
         btnBanHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +76,7 @@ public class fmMain extends javax.swing.JFrame {
             }
         });
 
+        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/kiem_ke.png"))); // NOI18N
         btnThongKe.setText("Thống kê");
         btnThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +84,7 @@ public class fmMain extends javax.swing.JFrame {
             }
         });
 
+        btnKho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/kho-nvl.png"))); // NOI18N
         btnKho.setText("Kho");
         btnKho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,9 +119,9 @@ public class fmMain extends javax.swing.JFrame {
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(btnTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(60, 60, 60)
                 .addComponent(btnBanHang)
-                .addGap(62, 62, 62)
+                .addGap(65, 65, 65)
                 .addComponent(btnQuanLy)
                 .addGap(86, 86, 86)
                 .addComponent(btnThongKe)
@@ -167,16 +173,21 @@ public class fmMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1325, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(JpHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JpHome, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JpHome, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -267,6 +278,7 @@ public class fmMain extends javax.swing.JFrame {
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTrangChu;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jpMenu;
     private javax.swing.JPanel jpTime;
     // End of variables declaration//GEN-END:variables
