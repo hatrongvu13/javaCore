@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JButton;
 
 /**
@@ -22,26 +24,39 @@ public class getBan extends javax.swing.JFrame implements ActionListener{
      */
     public getBan() {
         initComponents();
+        Connect conn = new Connect("root","","test");
     }
-    
     public void fillban() {
+        Connect conn = new Connect("root","","test");
+        conn.getConnect();
+        int cow = 0;
+        try {
+            ResultSet rs = conn.getBan(0);
+            while(rs.next()){
+                cow++;
+            }   
+            System.out.println(cow);
+        } catch (Exception e) {
+            System.out.println("ko lay dc du lieu tra ve");
+        }
+        System.out.println(cow);
         jpDemo.removeAll();
-        JButton[] btn = new JButton[10];
+        JButton[] btn = new JButton[cow];
         int c = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < cow; i++) {
             btn[i] = new JButton();
             btn[i].setName("ban");
             btn[i].setText("Bàn " + i);
             btn[i].setPreferredSize(new Dimension(90, 70));
             btn[i].setBackground(Color.decode("#8080ff"));
             btn[i].setActionCommand(btn[i].getText());
-            btn[i].addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    //btn[i].getText();
-                    System.out.println("act:" + evt.getActionCommand());
-                    System.out.println("da an vao day");
-                }
-            });
+//            btn[i].addActionListener(new java.awt.event.ActionListener() {
+//                public void actionPerformed(ActionEvent evt) {
+//                    //btn[i].getText();
+//                    System.out.println("act:" + evt.getActionCommand());
+//                    System.out.println("da an vao day");
+//                }
+//            });
             jpDemo.add(btn[i]);
             
         }
@@ -74,21 +89,20 @@ public class getBan extends javax.swing.JFrame implements ActionListener{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpDemo, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(jpDemo, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jButton1)
-                .addGap(54, 54, 54))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jButton1)
-                .addContainerGap(171, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpDemo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jpDemo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(jButton1)
+                .addGap(0, 207, Short.MAX_VALUE))
         );
 
         pack();

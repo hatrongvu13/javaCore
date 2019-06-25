@@ -78,8 +78,7 @@ public class Connect {
         }
         return rs;
     }
-    public ArrayList<Ban> getBan(int Maban){
-        ArrayList<Ban> array = null;
+    public ResultSet getBan(int Maban){
         String sql;
         if (Maban == 0) {
             sql = "select * from ban";
@@ -89,14 +88,9 @@ public class Connect {
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            array = new ArrayList<Ban>();
-            while(rs.next()){
-                Ban ban = new Ban(rs.getString("name"),rs.getString("status"),rs.getInt("id"));
-                array.add(ban);
-            }
         } catch (Exception e) {
             System.out.println("loi khong lay dc ban");
         }
-        return array;
+        return rs;
     }
 }
