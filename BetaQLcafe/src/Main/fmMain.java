@@ -7,6 +7,7 @@ package Main;
 
 import Main.BanHang.jpBanHang;
 import Main.Home.JpTrangChu;
+import Main.QuanLy.jpQuanLy;
 import javax.swing.JPanel;
 /**
  *
@@ -186,8 +187,7 @@ public class fmMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JpHome, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -217,7 +217,9 @@ public class fmMain extends javax.swing.JFrame {
 
     private void btnQuanLyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyActionPerformed
         // TODO add your handling code here:
+        jp = new jpQuanLy();
         JpHome.removeAll();
+        JpHome.add(jp);
         JpHome.updateUI();
     }//GEN-LAST:event_btnQuanLyActionPerformed
 

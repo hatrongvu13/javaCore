@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -76,5 +77,26 @@ public class Connect {
             JOptionPane.showMessageDialog(null, "khong lay dc du lieu");
         }
         return rs;
+    }
+    public ArrayList<Ban> getBan(int Maban){
+        ArrayList<Ban> array = null;
+        String sql;
+        if (Maban == 0) {
+            sql = "select * from ban";
+        }else{
+            sql = "select * from ban where id = '" + Maban +"'";
+        }
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            array = new ArrayList<Ban>();
+            while(rs.next()){
+                Ban ban = new Ban(rs.getString("name"),rs.getString("status"),rs.getInt("id"));
+                array.add(ban);
+            }
+        } catch (Exception e) {
+            System.out.println("loi khong lay dc ban");
+        }
+        return array;
     }
 }
