@@ -5,6 +5,8 @@
  */
 package Main.BanHang;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author hatro
@@ -18,6 +20,7 @@ public class jpStatusTb extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JPanel jp;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,7 +30,7 @@ public class jpStatusTb extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        JChonMon = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         Title = new javax.swing.JPanel();
         Tbname = new javax.swing.JLabel();
@@ -38,18 +41,7 @@ public class jpStatusTb extends javax.swing.JPanel {
         btnGoiMon = new javax.swing.JButton();
         jpBan_co_nguoi = new javax.swing.JPanel();
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 204));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        JChonMon.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -96,6 +88,11 @@ public class jpStatusTb extends javax.swing.JPanel {
         btnDatBan.setText("Đặt bàn");
 
         btnGoiMon.setText("Gọi món");
+        btnGoiMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoiMonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpBan_mac_dinhLayout = new javax.swing.GroupLayout(jpBan_mac_dinh);
         jpBan_mac_dinh.setLayout(jpBan_mac_dinhLayout);
@@ -159,23 +156,31 @@ public class jpStatusTb extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(JChonMon, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JChonMon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnGoiMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoiMonActionPerformed
+        // TODO add your handling code here:
+        jp = new jpChonMon();
+        JChonMon.removeAll();
+        JChonMon.add(jp);
+        JChonMon.updateUI();
+    }//GEN-LAST:event_btnGoiMonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JChonMon;
     private javax.swing.JLabel Tbname;
     private javax.swing.JPanel Title;
     private javax.swing.JButton btnDatBan;
     private javax.swing.JButton btnGoiMon;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jpBan_co_nguoi;
     private javax.swing.JPanel jpBan_mac_dinh;

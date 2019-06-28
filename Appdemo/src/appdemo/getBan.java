@@ -17,51 +17,64 @@ import javax.swing.JButton;
  *
  * @author hatro
  */
-public class getBan extends javax.swing.JFrame implements ActionListener{
+public class getBan extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form getBan
      */
     public getBan() {
         initComponents();
-        Connect conn = new Connect("root","","test");
+        Connect conn = new Connect("root", "", "test");
     }
+
     public void fillban() {
-        Connect conn = new Connect("root","","test");
+        Connect conn = new Connect("root", "", "test");
         conn.getConnect();
         int cow = 0;
         try {
             ResultSet rs = conn.getBan(0);
-            while(rs.next()){
+            while (rs.next()) {
                 cow++;
-            }   
+            }
             System.out.println(cow);
         } catch (Exception e) {
             System.out.println("ko lay dc du lieu tra ve");
         }
         System.out.println(cow);
-        jpDemo.removeAll();
+//        scrollPane1.removeAll();
+//        Jscroll.removeAll();
         JButton[] btn = new JButton[cow];
-        int c = 0;
-        for (int i = 0; i < cow; i++) {
-            btn[i] = new JButton();
-            btn[i].setName("ban");
-            btn[i].setText("Bàn " + i);
-            btn[i].setPreferredSize(new Dimension(90, 70));
-            btn[i].setBackground(Color.decode("#8080ff"));
-            btn[i].setActionCommand(btn[i].getText());
-//            btn[i].addActionListener(new java.awt.event.ActionListener() {
-//                public void actionPerformed(ActionEvent evt) {
-//                    //btn[i].getText();
-//                    System.out.println("act:" + evt.getActionCommand());
-//                    System.out.println("da an vao day");
-//                }
-//            });
-            jpDemo.add(btn[i]);
-            
+        int i = 0;
+//        for (int i = 0; i < cow; i++) {
+        try {
+
+            ResultSet rs = conn.getBan(0);
+            while (rs.next()) {
+
+                btn[i] = new JButton();
+                btn[i].setName("ban");
+                btn[i].setText(rs.getString("name"));
+                btn[i].setPreferredSize(new Dimension(90, 70));
+                btn[i].setBackground(Color.decode("#8080ff"));
+                btn[i].setActionCommand(btn[i].getText());
+                btn[i].addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        System.out.println("act:" + evt.getActionCommand());
+                        System.out.println("da an vao day");
+                    }
+                });
+
+//                scrollPane1.add(btn[i]);
+//                Jdemo.add(btn[i]);
+//                Jscroll.add(btn[i]);
+                i++;
+            }
+        } catch (Exception e) {
         }
-        jpDemo.validate();
+//        scrollPane1.validate();
+//        Jscroll.validate();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,8 +84,21 @@ public class getBan extends javax.swing.JFrame implements ActionListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpDemo = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        Jscroll = new javax.swing.JScrollPane();
+        Jdemo = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,26 +109,25 @@ public class getBan extends javax.swing.JFrame implements ActionListener{
             }
         });
 
+        Jscroll.setViewportView(Jdemo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpDemo, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(Jscroll, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(119, 119, 119))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpDemo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(224, 224, 224)
                 .addComponent(jButton1)
-                .addGap(0, 207, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
+            .addComponent(Jscroll)
         );
 
         pack();
@@ -149,8 +174,10 @@ public class getBan extends javax.swing.JFrame implements ActionListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Jdemo;
+    private javax.swing.JScrollPane Jscroll;
     private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jpDemo;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
     @Override
