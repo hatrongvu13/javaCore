@@ -83,6 +83,12 @@ public class frmADD extends javax.swing.JFrame {
         txtgioithieu.setRows(5);
         jScrollPane1.setViewportView(txtgioithieu);
 
+        cb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Thêm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,6 +198,10 @@ public class frmADD extends javax.swing.JFrame {
         int i = conn.add(TenSP, img, gioithieu, gia, n);
         System.out.println(i);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbActionPerformed
 
     /**
      * @param args the command line arguments

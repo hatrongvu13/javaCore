@@ -167,16 +167,18 @@ public class login extends javax.swing.JFrame {
         conn.getConnect();
         try {
             int powe;
-            ResultSet rs = conn.getPower(user);
-            while(rs.next()){
-                powe = rs.getInt("power");
-                System.out.println(powe);
-            }
+            powe = conn.getPower(user);
+//            ResultSet rs = conn.getPower(user);
+//            while(rs.next()){
+//                powe = rs.getInt("power");
+//                System.out.println(powe);
+//            }
+            System.out.println(powe);
             boolean check = conn.check(user, pass, "taikhoan");
             System.out.println(check);
             if ( check == true) {
                 this.setVisible(false);
-                Program.m();
+                Program.m(user, powe);
             } else {
                 JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng", "Login Error", JOptionPane.ERROR_MESSAGE);
                 return;

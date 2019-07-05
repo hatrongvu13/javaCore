@@ -58,7 +58,7 @@ public class Connect {
     }
     public Connection getConnect(){
         try {
-            String url = "jdbc:mysql://localhost:3306/" + this.dbName;
+            String url = "jdbc:mysql://localhost:3306/" + this.dbName+"?useUnicode=true&characterEncoding=utf8";
             conn = DriverManager.getConnection(url, this.user, this.password);
             stmt = conn.createStatement();
 //            JOptionPane.showMessageDialog(null, "Connected !");

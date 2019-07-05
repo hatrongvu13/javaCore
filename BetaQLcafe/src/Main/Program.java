@@ -5,7 +5,6 @@
  */
 package Main;
 
-import Models.User;
 /**
  *
  * @author hatro
@@ -18,8 +17,14 @@ public class Program {
         log.setLocationRelativeTo(null);
         log.setVisible(true);
     }
-    public static void m(){
+    public static void m(String user, int power){
         main = new fmMain();
+        if(user != null){
+        main.setName(user);
+        }else{
+            main.setName("noname");
+        }
+        main.setPower(power);
         main.setLocationRelativeTo(null);
         main.setVisible(true);
     }

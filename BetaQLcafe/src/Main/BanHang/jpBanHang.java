@@ -5,11 +5,13 @@
  */
 package Main.BanHang;
 
+import Models.Ban;
 import SQL.connect;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.sql.ResultSet;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -18,46 +20,53 @@ import javax.swing.JPanel;
  * @author hatro
  */
 public class jpBanHang extends javax.swing.JPanel {
-
+    
     public JPanel jp ;
     /**
      * Creates new form jpBanHang
      */
     public jpBanHang() {
         initComponents();
-        fillTable();
+        fillban();
     }
-            
-    private void fillTable(){
+    ArrayList<Ban> ban;
+    public void fillban(){
         connect conn = new connect("root", "","ql_cafe");
         conn.getConnect();
-        ResultSet rs = conn.getData("banan");
-        int cow = 0;
-        try {
-            while (rs.next()) {                
-                cow++;
-            }
-        } catch (Exception e) {
-            System.out.println("khong lay dc so ban ghi !");
-        }
-        JButton[] btn = new JButton[cow];
+        ArrayList<Ban> arr;
+        
+        arr = conn.getAllBan();
+        System.out.println(arr.size());
+        JButton[] btn = new JButton[arr.size()];
         jpBan.removeAll();
-        for (int i = 0; i < cow; i++) {
+        for (int i = 0; i < arr.size(); i++) {
             btn[i] = new JButton();
-            btn[i].setName("ban");
-            btn[i].setText("Bàn " + i);
+            btn[i].setName(String.valueOf(arr.get(i).getMaban()));
+            btn[i].setText(arr.get(i).getTenBan());
             btn[i].setPreferredSize(new Dimension(90, 70));
-            btn[i].setBackground(Color.decode("#8080ff"));
-            btn[i].setActionCommand(btn[i].getText());
-            btn[i].addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    //btn[i].getText();
-                    System.out.println("act:" + evt.getActionCommand());
-                    jp = new jpStatusTb();
-                    JpDetail.removeAll();
-                    JpDetail.add(jp);
-                    JpDetail.updateUI();
-                    System.out.println("da an vao day");
+            if(arr.get(i).getTrangthai() == 0){
+                btn[i].setBackground(Color.decode("#48A014"));
+            }
+            if(arr.get(i).getTrangthai() == 1){
+                btn[i].setBackground(Color.decode("#F5E022"));
+            }
+            if(arr.get(i).getTrangthai() == 2){
+                btn[i].setBackground(Color.decode("#F23B3B"));
+            }
+            btn[i].addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    connect con = new connect("root", "", "ql_cafe");
+                    con.getConnect();
+                    ban = con.getBan(Integer.parseInt(e.getComponent().getName()));
+                    System.out.println("ban");
+                    System.out.println(ban.size());
+                    if (ban != null) {
+                        jp = new jpStatusTb(ban.get(0).getTenBan(), ban.get(0).trangthai,ban.get(0).maban);
+                        JpDetail.removeAll();
+                        JpDetail.add(jp);
+                        JpDetail.validate();
+                    }
                 }
             });
             jpBan.add(btn[i]);
@@ -76,6 +85,12 @@ public class jpBanHang extends javax.swing.JPanel {
         JpTable = new javax.swing.JPanel();
         jpBan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         JpDetail = new javax.swing.JPanel();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -86,6 +101,54 @@ public class jpBanHang extends javax.swing.JPanel {
 
         jLabel1.setText("Danh sách các bàn");
 
+        jPanel1.setBackground(new java.awt.Color(72, 160, 20));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 12, Short.MAX_VALUE)
+        );
+
+        jPanel2.setBackground(new java.awt.Color(245, 224, 34));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 12, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(242, 59, 59));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel2.setText("Trống");
+
+        jLabel3.setText("Đặt trước");
+
+        jLabel4.setText("Có người");
+
         javax.swing.GroupLayout JpTableLayout = new javax.swing.GroupLayout(JpTable);
         JpTable.setLayout(JpTableLayout);
         JpTableLayout.setHorizontalGroup(
@@ -93,17 +156,46 @@ public class jpBanHang extends javax.swing.JPanel {
             .addGroup(JpTableLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(JpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addGroup(JpTableLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpTableLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(15, 15, 15))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpTableLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(JpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JpTableLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
                     .addComponent(jpBan, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         JpTableLayout.setVerticalGroup(
             JpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpTableLayout.createSequentialGroup()
+            .addGroup(JpTableLayout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpBan, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addComponent(jpBan, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(JpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         JpDetail.setBackground(new java.awt.Color(182, 103, 7));
@@ -116,12 +208,12 @@ public class jpBanHang extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(JpTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JpDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE))
+                .addComponent(JpDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JpDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(JpTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JpTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JpDetail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -130,6 +222,12 @@ public class jpBanHang extends javax.swing.JPanel {
     private javax.swing.JPanel JpDetail;
     private javax.swing.JPanel JpTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jpBan;
     // End of variables declaration//GEN-END:variables
 }

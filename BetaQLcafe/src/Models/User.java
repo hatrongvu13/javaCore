@@ -11,15 +11,18 @@ package Models;
  */
 public class User {
     public String user;
+    public String pass;
     public int power;
 
     public User() {
         user = "";
+        pass = "";
         power = 0;
     }
 
-    public User(String user, int power) {
+    public User(String user, String pass, int power) {
         this.user = user;
+        this.pass = pass;
         this.power = power;
     }
 
@@ -31,13 +34,19 @@ public class User {
         this.user = user;
     }
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     public int getPower() {
         return power;
     }
 
     public void setPower(int power) {
         this.power = power;
-    }
-    
-    
+    }   
 }

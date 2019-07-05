@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Main.BanHang;
-
 import javax.swing.JPanel;
 
 /**
@@ -12,14 +11,37 @@ import javax.swing.JPanel;
  * @author hatro
  */
 public class jpStatusTb extends javax.swing.JPanel {
-
+    public static jpStatusTb st;
+    public String tenban;
+    int ma;
     /**
      * Creates new form jpStatusTb
      */
-    public jpStatusTb() {
+    public jpStatusTb(String tenBan, int status, int maban) {
         initComponents();
+        st = this;
+        if(tenBan.equals("")){
+            System.out.println("chua co ten ban !");
+        }else{
+            this.tenban = tenBan;
+            System.out.println(tenban);
+        }
+        Tbname.setText(tenban);
+        changeTXT(status);
+        this.ma = maban;
+        System.out.println(ma);
     }
-
+    public void changeTXT(int idBan){
+        if (idBan == 0) {
+            tbStatus.setText("Trống");
+        }
+        if (idBan == 1) {
+            tbStatus.setText("Đặt trước");
+        }
+        if (idBan == 2) {
+            tbStatus.setText("Có người");
+        }
+    }
     public JPanel jp;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,6 +108,11 @@ public class jpStatusTb extends javax.swing.JPanel {
         );
 
         btnDatBan.setText("Đặt bàn");
+        btnDatBan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatBanActionPerformed(evt);
+            }
+        });
 
         btnGoiMon.setText("Gọi món");
         btnGoiMon.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +155,7 @@ public class jpStatusTb extends javax.swing.JPanel {
         );
         jpBan_co_nguoiLayout.setVerticalGroup(
             jpBan_co_nguoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGap(0, 382, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -156,7 +183,7 @@ public class jpStatusTb extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JChonMon, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
+                .addComponent(JChonMon, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,11 +194,22 @@ public class jpStatusTb extends javax.swing.JPanel {
 
     private void btnGoiMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoiMonActionPerformed
         // TODO add your handling code here:
-        jp = new jpChonMon();
+        jp = new jpChonMon(ma);
         JChonMon.removeAll();
         JChonMon.add(jp);
         JChonMon.updateUI();
     }//GEN-LAST:event_btnGoiMonActionPerformed
+
+    private void btnDatBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatBanActionPerformed
+        // TODO add your handling code here:\
+        String str = btnDatBan.getText();
+        if(str == "Đặt bàn"){
+            btnDatBan.setText("Huỷ bàn");
+            
+        }else{
+            btnDatBan.setText("Đặt bàn");
+        }
+    }//GEN-LAST:event_btnDatBanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
